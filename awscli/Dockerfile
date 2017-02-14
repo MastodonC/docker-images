@@ -1,6 +1,5 @@
-FROM ubuntu:16.04
+FROM debian:jessie
 
 RUN apt-get update -y
 RUN apt-get install -y python python-pip
 RUN pip install --upgrade awscli
-
