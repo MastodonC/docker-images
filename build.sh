@@ -1,7 +1,7 @@
 #!/bin/bash
 DATE=`date --iso-8601`
 
-for IMAGE_NAME in logstash-ng
+for IMAGE_NAME in logstash-ng awscli grafana
 do
   # --no-cache
   docker build -t mastodonc/$IMAGE_NAME:$DATE ./$IMAGE_NAME
