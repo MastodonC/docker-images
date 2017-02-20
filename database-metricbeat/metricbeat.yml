@@ -1,0 +1,43 @@
+fields:
+    tag: '${CLUSTER_NAME}'
+
+output:
+  logstash:
+    hosts: ["${LOGSTASH_URL}"]
+
+#==========================  Modules configuration ============================
+metricbeat.modules:
+
+#------------------------------- System Module -------------------------------
+- module: system
+  metricsets:
+    - cpu
+    - load
+    - diskio
+    - filesystem
+    - fsstat
+    - memory
+    - network
+    - process
+    - socket
+  enabled: true
+  period: 60s
+  processes: ['.*']
+
+#------------------------------- Docker Module -------------------------------
+- module: docker
+  metricsets: ["cpu", "info", "memory", "network", "diskio", "container"]
+  hosts: ["unix:///var/run/docker.sock"]
+  enabled: true
+  period: 60s
+
+#------------------------------- Kafka Module -------------------------------
+- module: kafka
+  metricsets: ["partition", "consumergroup"]
+  enabled: true
+  period: 10s
+  hosts: ${KAFKA_HOSTS}
+
+  client_id: metricbeat
+  retries: 3
+  backoff: 250ms
