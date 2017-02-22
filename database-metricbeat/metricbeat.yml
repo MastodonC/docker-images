@@ -1,0 +1,20 @@
+fields:
+    tag: '${CLUSTER_NAME}'
+
+output:
+  logstash:
+    hosts: ["${LOGSTASH_URL}"]
+
+#==========================  Modules configuration ============================
+metricbeat.modules:
+
+#------------------------------- Kafka Module -------------------------------
+- module: kafka
+  metricsets: ["partition", "consumergroup"]
+  enabled: true
+  period: 10s
+  hosts: ${KAFKA_HOSTS}
+
+  client_id: metricbeat
+  retries: 3
+  backoff: 250ms
