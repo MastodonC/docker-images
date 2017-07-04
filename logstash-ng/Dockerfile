@@ -8,3 +8,4 @@ RUN rm -rf /var/lib/apt/lists/
 
 RUN mkdir -p /etc/logstash
 COPY logstash.conf /etc/logstash/
+COPY log4j2.properties /etc/logstash/log4j2.properties
