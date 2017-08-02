@@ -1,6 +1,6 @@
 #!/bin/bash
 DATE=`date +%Y-%m-%d`
-for IMAGE_NAME in logstash-ng database-metricbeat
+for IMAGE_NAME in logstash-ng 
 do
   docker build -t mastodonc/$IMAGE_NAME:$DATE ./$IMAGE_NAME
   docker push mastodonc/$IMAGE_NAME:$DATE
