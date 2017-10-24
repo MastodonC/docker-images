@@ -1,5 +1,4 @@
-FROM logstash:5.2.0
-
+FROM logstash:5.5.2
 RUN logstash --version
 RUN logstash-plugin install logstash-output-amazon_es
 RUN logstash-plugin install logstash-filter-dissect
